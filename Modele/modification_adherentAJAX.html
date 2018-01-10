@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>Création Adhérent</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style type="text/css">
+* {margin:0;padding:0;font-family:Calibri, Helvetica, sans-serif;font-weight:500;border-spacing:0;font-size:1.2vw;}
+h1 {text-align:center;font-size:2vw;}
+input {border:solid #AAA 1px;}
+#tbform {margin-top:2vh;border-collapse:collapse;width:80%;margin-left:10%;font-size:1.2vw;}
+#tbform tr td input {margin-bottom:2px;}
+#tbform td:first-child{width:10vw;}
+#valider, #effacer {line-height:1.2em;width:9vw;border-radius:2px;background-color:lightgrey;margin:2vh 0;}
+#zone-dialogue {color:red;}
+.message {padding-top:10px;}
+.form{visibility: hidden;}
+
+</style>
+<script>
+var erreur=0;
+
+
+function recherche(){
+    var champ,debmess;
+    var mess='Veuillez corriger votre saisie avant de valider le formulaire';
+    erreur=0;
+  obj=document.getElementById('nom');
+  //verif(obj);
+  obj=document.getElementById('prenom');
+  //verif(obj);
+
+
+var AJAXnom=encodeURIComponent($('#nom').val());
+var AJAXprenom=encodeURIComponent($('#prenom').val());
+var xhr=$.ajax( {
+	url : "recherche_adherentAJAX.php",
+	type : 'POST',
+	data : { nom : AJAXnom, prenom : AJAXprenom},
+	dataType : 'html'
+})
+	.done(function(message) {
+		$("#zone_dialogue").html(message);
+		var rep=message;
+		var retour=rep.substr(0,6);
+		if(retour=='Erreur'){
+		$("$zone_dialogue").html(rep);
+		$("#nom").focus();
+		$("#zone_dialogue").css('color','tomato');
+		}
+
+	})
+	.fail(function(xhr,erreur) {
+		alert('Une erreur '+erreur+'s\'est produite ');
+	})
+	.always(function(message) {
+		alert('Transaction terminée,');
+	})
+}
+
+
+</script>
+</head>
+<body>
+<h1>Modificatioin adhérent</h1>
+<form id="form_saisie" action="ajout_adherentAJAX.php" method="POST">
+	<table id="tbform">
+		<tbody>
+			<tr><td>Nom : </td><td><input type="text" id="nom" name="nom" onInput="majuscule(this)" required size="30" /></td></tr>
+			<tr><td>Prénom : </td><td><input type="text" id="prenom" name="prenom" onInput="premaj(this)" required size="30" /></td></tr>
+			<tr><td>&nbsp;</td><td>    <input type="button" id="rechercher" value="Rechercher" onclick="recherche()" /></td></tr>
+			<tr><td>Adresse : </td><td><input type="text" id="adresse1" name="adresse1" onblur="aff(this)" required  size="35" /></td></tr>
+			<tr><td>suite : </td><td><input type="text" id="adresse2" name="adresse2" onBlur="aff(this)"  size="35" /></td></tr>
+			<tr><td>Code postal : </td><td><input type="text" id="cp" name="cp" onInput="chiffre(this)" size="5" required /></td></tr>
+			<tr><td>Ville : </td><td><input type="text" id="ville" name="ville" onInput="majuscule(this)" onBlur="aff(this)" required /></td></tr>
+			<tr><td>Téléphone : </td><td><input type="text" id="tel_dom" name="tel_dom"  size="20"  /></td></tr>
+			<tr><td>Section : </td><td><input type="text" id="section" name="section" onInput="majuscule(this)" size="20" /></td></tr>
+			<tr><td>Sexe : </td><td><input type="radio" name="sexe" value="M" checked/>Homme&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sexe" value="F" />Femme</td></tr>
+			<tr><td><input type="button" id="valider" value="Valider" onclick="validation()" /></td>
+					<td><input type="reset" id="effacer" value="Effacer" /></td>
+					<td><input type="button" id="supprimer" value="Supprimer utilisateur"/><a href="suppression_utilisateurAJAX.php"></a></td>
+				</tr>
+			<tr><td id="zone_dialogue" class="message" colspan="2">&nbsp;</td></tr>
+			<a href="suppression_utilisateurAJAX.php">Supprimer utilisateur</a>
+
+		</tbody>
+	</table>
+</form>
+</body>
+</html>

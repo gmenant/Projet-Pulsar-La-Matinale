@@ -1,0 +1,81 @@
+*{margin:0;padding:0;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+    }
+    body{background-color: grey;}
+    table {
+      border-collapse: collapse;
+      width:100%;
+    }
+    a{text-decoration: none;}
+    tr {
+      width:100%;}
+
+    td {
+      text-align:center;
+
+      flex:auto;
+      border: 1px solid black;
+      font-size: 1.5vw;}
+.chron{
+  text-align:left;
+  padding:5px;
+}
+    .contenuJours{
+      height:12vh;
+
+    }
+
+    #lnJoursSemaine td {
+      padding:4px 0 3px 0;
+      text-align:left;
+      border:none;
+      border-top:7px solid lightgrey;
+      background-color: gold;}
+  	
+  	#lnJoursSemaine td:nth-child(even) {
+  		background-color: orange;
+  	}
+
+    #choixHSemaine {
+
+      display:flex;
+      flex-wrap:wrap;
+      width:75vw;
+      }
+
+    #choixHSemaine a{
+
+      color:white;
+      background-color:grey;
+      flex:initial;
+      border: 1px solid white;
+      padding:2px;
+    }
+    #choixHSemaine a div{
+
+    }
+    #numSemCours{
+      background-color: lightblue;
+    }
+    #numSemSelec{
+      background-color: gold;
+      color:black;
+    }
+    .nomJours{
+
+    }
+    #semainePrec{
+        width:0px;
+        border:20% solid transparent;
+        border-right:20% solid purple;
+        }
+
+     #semaineSui, #semainePrec, #semaineCours{
+      border:none;
+      padding:10px 0 2px 0;
+    }
+    .num{
+      text-align: center;
+      width:18px;
+    }
