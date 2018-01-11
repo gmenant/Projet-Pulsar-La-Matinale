@@ -163,20 +163,21 @@ echo "<br>";
 	 function identifieUtilisateur($id){
         connexion();
         global $infosUser,$idcom;
-        $requeteUserExist=" SELECT id_chroniqueur, nom, prenom, password, annee_diff, mail FROM chroniqueur WHERE nom = '$id'; ";
+        $requeteUserExist=" SELECT id_chroniqueur, nom, prenom, password, annee_diff, mail,lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche FROM chroniqueur WHERE nom = '$id'; ";
+        var_dump($requeteUserExist);
         $resultatExiste=$idcom->query($requeteUserExist);
         $infosUser=$resultatExiste->fetch();
-        //var_dump($infosUser);
+        var_dump($infosUser);
         return $infosUser;
     }
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
     function identifieJours($id){
-connexion();
-global $infosUser,$idcom;
-$requette=" SELECT lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche FROM chroniqueur WHERE id_chroniqueur = '$id';";
- $resultatExiste=$idcom->query($requette);
-        $infosJours=$resultatExiste->fetch();
+		connexion();
+		global $infosUser,$idcom;
+		$requette=" SELECT lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche FROM chroniqueur WHERE id_chroniqueur = '$id';";
+		$resultatExiste=$idcom->query($requette);
+		$infosJours=$resultatExiste->fetch();
 
         return $infosJours;
 

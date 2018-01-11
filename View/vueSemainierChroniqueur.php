@@ -10,43 +10,78 @@ foreach ($infosJours as $v) {
         $$v = true;
 
       }
-
-
 ?>
 
 <!-- Champ Input Pour la date -->
 
 <script type="text/javascript">
 
-var lundi    = 1;
-var mardi    = 2;
-var mercredi = 3;
-var jeudi    = 4;
-var vendredi = 5;
-var samedi   = 6;
+//variables pour limiter les choix de jours possibles	
+var lundi    = 0;
+var mardi    = 0;
+var mercredi = 0;
+var jeudi    = 0;
+var vendredi = 0;
+var samedi   = 0;
 var dimanche = 0;
-var joursARetirer = "";
+
+//recuperations variables jours choisis chroniqueur
+var lun = <?PHP echo $_SESSION['lundi']; ?>;
+var mar = <?PHP echo $_SESSION['mardi']; ?>;
+var mer = <?PHP echo $_SESSION['mercredi']; ?>;
+var jeu = <?PHP echo $_SESSION['jeudi']; ?>;
+var ven = <?PHP echo $_SESSION['vendredi']; ?>;
+var sam = <?PHP echo $_SESSION['samedi']; ?>;
+var dim = <?PHP echo $_SESSION['dimanche']; ?>;
+
+//transformation variables en numeros compatibles datepicker UI
+if (lun == 1){
+	var lundi = 1;
+}
+if (mar == 1){
+	var mardi = 2;
+}
+if (mer == 1){
+	var mercredi = 3;
+}
+if (jeu == 1){
+	var jeudi = 4;
+}
+if (ven == 1){
+	var vendredi = 5;
+}
+if (sam == 1){
+	var samedi = 6;
+}
+if (dim == 1){
+	var dimanche = 0;
+}
+
+	$( function() {
+		//var lundi    = 'date.getDay() == 1 ';
+	    $( "#champs" ).datepicker({
+	      showWeek: true,
+	      firstDay: 1,
+	      altFormat: 'yy-mm-dd',
+	      altField: ".actualDate",
+	      beforeShowDay: function (date) {
+	      	if (!(date.getDay() == lundi) && 
+	      		!(date.getDay() == mardi) && 
+	      		!(date.getDay() == mercredi) && 
+	      		!(date.getDay() == jeudi) && 
+	      		!(date.getDay() == vendredi) && 
+	      		!(date.getDay() == samedi) && 
+	      		!(date.getDay() == dimanche)
+	      		) { // La semaine commence à 0 = Dimanche
+		    return [false, ''];
+			} else {
+		    return [true, ''];
+			}
 
 
-
-			$( function() {
-				//var lundi    = 'date.getDay() == 1 ';
-			    $( "#champs" ).datepicker({
-			      showWeek: true,
-			      firstDay: 1,
-			      altFormat: 'yy-mm-dd',
-			      altField: ".actualDate",
-			      beforeShowDay: function (date) {
-			      	if (!(date.getDay() == mardi)) { // La semaine commence à 0 = Dimanche
-                return [false, ''];
-            } else {
-                return [true, ''];
-            }
-      	  }
-			      });
-			  } );
-
-
+		  }
+	    });
+	  });
 
 </script>
 

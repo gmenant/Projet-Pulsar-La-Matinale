@@ -31,6 +31,14 @@ switch("$page"){
 	        $_SESSION['password']     		= $motdepasse;
 	        $_SESSION['prenom']             = $infosUser['prenom'];
 	        $_SESSION['annee_diff']         = $infosUser['annee_diff'];
+	        $_SESSION['lundi']              = $infosUser['lundi'];
+	        $_SESSION['mardi']              = $infosUser['mardi'];
+	        $_SESSION['mercredi']           = $infosUser['mercredi'];
+	        $_SESSION['jeudi']              = $infosUser['jeudi'];
+	        $_SESSION['vendredi']           = $infosUser['vendredi'];
+	        $_SESSION['samedi']             = $infosUser['samedi'];
+	        $_SESSION['dimanche']           = $infosUser['dimanche'];
+
 	        
 	        echo "<meta http-equiv='refresh' content='1;URL=../Controller/index_chroniqueur.php?page=semainier'>";
 		     }
