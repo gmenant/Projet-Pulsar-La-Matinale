@@ -49,7 +49,7 @@ SECTION > DIV + DIV {
       <tr><td>Informations complementaires</td><td>
 
       <textarea type="text" name="InfosComp" required></textarea></td></tr>
-
+      <tr><td>Selectionner jours de diffusion</td></tr>
 
       <tr><td colspan="2">
 

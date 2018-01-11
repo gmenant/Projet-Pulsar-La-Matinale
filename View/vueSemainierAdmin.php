@@ -1,3 +1,5 @@
+
+<link rel="stylesheet" href="../View/index.css">
 <?PHP
 if (isset($_GET["semaine"]))
 {	$numSemSelec = $_GET["semaine"];}
@@ -7,7 +9,7 @@ else
 echo $anneeEnCours;
 echo $numSemCours;
 //Affiche le semainier
-JourParNrSemaine($numSemSelec,$anneeEnCours);
+//JourParNrSemaine($numSemSelec,$anneeEnCours);
 
 semainier($numSemSelec,$anneeEnCours);
 ?>

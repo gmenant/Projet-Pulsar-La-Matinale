@@ -1,27 +1,55 @@
+
 <link rel="stylesheet" href="../View/semainierChroniqueur.css">
+<?PHP
+$infosJours = identifieJours($_SESSION['id']);
+var_dump($infosJours);
+foreach ($infosJours as $v) {
+       // var_dump($v);
+       // echo $v;
+        $$v = $v;
+        $$v = true;
+
+      }
+
+
+?>
 
 <!-- Champ Input Pour la date -->
 
 <script type="text/javascript">
 
+var lundi    = 1;
+var mardi    = 2;
+var mercredi = 3;
+var jeudi    = 4;
+var vendredi = 5;
+var samedi   = 6;
+var dimanche = 0;
+var joursARetirer = "";
+
+
+
 			$( function() {
+				//var lundi    = 'date.getDay() == 1 ';
 			    $( "#champs" ).datepicker({
 			      showWeek: true,
 			      firstDay: 1,
 			      altFormat: 'yy-mm-dd',
 			      altField: ".actualDate",
 			      beforeShowDay: function (date) {
-            if (date.getDay() == 5 || date.getDay() == 4) { // La semaine commence à 0 = Dimanche
+			      	if (!(date.getDay() == mardi)) { // La semaine commence à 0 = Dimanche
                 return [false, ''];
             } else {
                 return [true, ''];
             }
-        }
-
+      	  }
 			      });
 			  } );
 
+
+
 </script>
+
 <div type="text" id="champs"></div></p>
 
 	<fieldset>
@@ -47,19 +75,8 @@
 					</td>
 				</tr><tr><td>
 				<button type="submit" onclick="validation()">Envoyer informations</button>
-			</td></tr><tr><td id="zone_dialogue" class="message">&nbsp;</td></tr>
-			</table>
-
-		</td>
-			<td>
-				<table>
-				<tr>
-					<td></td><td><div name></div></td>
-				</tr>
-				<tr><td><input type="hidden" class="actualDate" name="dateSelec">
 				<button type="submit" onclick="recuperation()">Informations déjà entrées</button>
-
-			</tr>
+			</td></tr><tr><td id="zone_dialogue" class="message">&nbsp;</td></tr>
 			</table></td></tr>
 
 	</table>
