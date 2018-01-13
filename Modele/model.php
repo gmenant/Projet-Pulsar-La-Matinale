@@ -29,15 +29,11 @@ function connexion(){
 //////////////////////////////////////////////////////////////////////////////////////////
 
 
-function creatUser($nom1,$prenom1,$mail1,$annee_diff1,$mdp1){
-        // connexion();
+function creatUser($nom1,$prenom1,$mail1,$annee_diff1,$mdp1,$lundi1,$mardi1,$mercredi1,$jeudi1,$vendredi1,$samedi1,$dimanche1){
+        connexion();
         global $idcom,$compteur;
-        $requeteEnregistre="INSERT INTO chroniqueur (`nom`, `prenom`,`mail`, `annee_diff`, `password`) VALUES ('$nom1','$prenom1','$mail1','$annee_diff1','$mdp1');";
-        var_dump($requeteEnregistre);
-
+        $requeteEnregistre="INSERT INTO chroniqueur (`nom`, `prenom`,`mail`, `annee_diff`, `password`,`lundi`,`mardi`,`mercredi`,`jeudi`,`vendredi`,`samedi`,`dimanche`) VALUES ('$nom1','$prenom1','$mail1','$annee_diff1','$mdp1','$lundi1','$mardi1','$mercredi1','$jeudi1','$vendredi1','$samedi1','$dimanche1');";
         $compteur=$idcom->exec($requeteEnregistre);
-        var_dump($compteur);
-        echo "plus";
         return $compteur;
      }
 
@@ -167,12 +163,25 @@ echo "<br>";
 	 function identifieUtilisateur($id){
         connexion();
         global $infosUser,$idcom;
-        $requeteUserExist=" SELECT id_chroniqueur, nom, prenom, password, annee_diff, mail FROM chroniqueur WHERE nom = '$id'; ";
+        $requeteUserExist=" SELECT id_chroniqueur, nom, prenom, password, annee_diff, mail,lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche FROM chroniqueur WHERE nom = '$id'; ";
+        var_dump($requeteUserExist);
         $resultatExiste=$idcom->query($requeteUserExist);
         $infosUser=$resultatExiste->fetch();
-        //var_dump($infosUser);
+        var_dump($infosUser);
         return $infosUser;
     }
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+    function identifieJours($id){
+		connexion();
+		global $infosUser,$idcom;
+		$requette=" SELECT lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche FROM chroniqueur WHERE id_chroniqueur = '$id';";
+		$resultatExiste=$idcom->query($requette);
+		$infosJours=$resultatExiste->fetch();
+
+        return $infosJours;
+
+}
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
     function creatContenu($titre1,$texte1,$id_chroniqueur1,$id_emission1){

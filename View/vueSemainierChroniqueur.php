@@ -1,27 +1,90 @@
+
 <link rel="stylesheet" href="../View/semainierChroniqueur.css">
+<?PHP
+$infosJours = identifieJours($_SESSION['id']);
+var_dump($infosJours);
+foreach ($infosJours as $v) {
+       // var_dump($v);
+       // echo $v;
+        $$v = $v;
+        $$v = true;
+
+      }
+?>
 
 <!-- Champ Input Pour la date -->
 
 <script type="text/javascript">
 
-			$( function() {
-			    $( "#champs" ).datepicker({
-			      showWeek: true,
-			      firstDay: 1,
-			      altFormat: 'yy-mm-dd',
-			      altField: ".actualDate",
-			      beforeShowDay: function (date) {
-            if (date.getDay() == 5 || date.getDay() == 4) { // La semaine commence à 0 = Dimanche
-                return [false, ''];
-            } else {
-                return [true, ''];
-            }
-        }
+//variables pour limiter les choix de jours possibles	
+var lundi    = 0;
+var mardi    = 0;
+var mercredi = 0;
+var jeudi    = 0;
+var vendredi = 0;
+var samedi   = 0;
+var dimanche = 0;
 
-			      });
-			  } );
+//recuperations variables jours choisis chroniqueur
+var lun = <?PHP echo $_SESSION['lundi']; ?>;
+var mar = <?PHP echo $_SESSION['mardi']; ?>;
+var mer = <?PHP echo $_SESSION['mercredi']; ?>;
+var jeu = <?PHP echo $_SESSION['jeudi']; ?>;
+var ven = <?PHP echo $_SESSION['vendredi']; ?>;
+var sam = <?PHP echo $_SESSION['samedi']; ?>;
+var dim = <?PHP echo $_SESSION['dimanche']; ?>;
+
+//transformation variables en numeros compatibles datepicker UI
+if (lun == 1){
+	var lundi = 1;
+}
+if (mar == 1){
+	var mardi = 2;
+}
+if (mer == 1){
+	var mercredi = 3;
+}
+if (jeu == 1){
+	var jeudi = 4;
+}
+if (ven == 1){
+	var vendredi = 5;
+}
+if (sam == 1){
+	var samedi = 6;
+}
+if (dim == 1){
+	var dimanche = 0;
+}
+
+	$( function() {
+		//var lundi    = 'date.getDay() == 1 ';
+	    $( "#champs" ).datepicker({
+	      showWeek: true,
+	      firstDay: 1,
+	      altFormat: 'yy-mm-dd',
+	      altField: ".actualDate",
+	      beforeShowDay: function (date) {
+	      	if (!(date.getDay() == lundi) && 
+	      		!(date.getDay() == mardi) && 
+	      		!(date.getDay() == mercredi) && 
+	      		!(date.getDay() == jeudi) && 
+	      		!(date.getDay() == vendredi) && 
+	      		!(date.getDay() == samedi) && 
+	      		!(date.getDay() == dimanche)
+	      		) { // La semaine commence à 0 = Dimanche
+		    return [false, ''];
+			} else {
+		    return [true, ''];
+			}
+
+
+		  }
+	    });
+	  });
 
 </script>
+
 <div type="text" id="champs"></div></p>
 
 	<fieldset>
@@ -47,19 +110,8 @@
 					</td>
 				</tr><tr><td>
 				<button type="submit" onclick="validation()">Envoyer informations</button>
-			</td></tr><tr><td id="zone_dialogue" class="message">&nbsp;</td></tr>
-			</table>
-
-		</td>
-			<td>
-				<table>
-				<tr>
-					<td></td><td><div name></div></td>
-				</tr>
-				<tr><td><input type="hidden" class="actualDate" name="dateSelec">
 				<button type="submit" onclick="recuperation()">Informations déjà entrées</button>
-
-			</tr>
+			</td></tr><tr><td id="zone_dialogue" class="message">&nbsp;</td></tr>
 			</table></td></tr>
 
 	</table>
