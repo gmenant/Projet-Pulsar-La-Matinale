@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="../View/semainierChroniqueur.css">
 <?PHP
 $infosJours = identifieJours($_SESSION['id']);
-var_dump($infosJours);
 foreach ($infosJours as $v) {
        // var_dump($v);
        // echo $v;
@@ -64,6 +63,7 @@ if (dim == 1){
 	      firstDay: 1,
 	      altFormat: 'yy-mm-dd',
 	      altField: ".actualDate",
+	      onSelect: function(dateText, inst) { recuperation() },
 	      beforeShowDay: function (date) {
 	      	if (!(date.getDay() == lundi) && 
 	      		!(date.getDay() == mardi) && 
@@ -90,15 +90,34 @@ if (dim == 1){
 	<fieldset>
     	<legend id="leg">Chronique du </legend>
 
-			<table>
+			
+			<div>
+				<h3>Titre de la chronique</h3>
+				<input type="hidden" id="id_chroniqueur"  value="<?PHP echo $_SESSION['id'] ?>">
+				<input type="hidden" class="actualDate" id="dateSelec" name="dateSelec" onchange="recuperationTest()">
+				<input id="titre" name ="titre" type="text">
+			</div>
+			<div>
+				<h3>Contenu de la chronique</h3>
+				<textarea name="texte" id="texte" cols="30" rows="10"></textarea>
+				<button onclick="validation()">Envoyer informations</button>
+				<button onclick="recuperation()">Informations déjà entrées</button>
+			</div>
+			<div id="zone_dialogue" class="message"></div>
+			<div id="titre1"></div>
+			<div id="texte1"></div>
+
+
+
+			<!--<table>
 				<tr>
 					<td><table>
 				<tr>
 					<td>Titre de la chronique</td>
 				</tr>
 				<tr>
-					<td><input type="hidden" id="id_chroniqueur" name="dateSelec" value="<?PHP echo $_SESSION['id'] ?>">
-						<input type="hidden" class="actualDate" id="dateSelec" name="dateSelec">
+					<td><input type="hidden" id="id_chroniqueur"  value="<?PHP //echo $_SESSION['id'] ?>">
+						<input type="hidden" class="actualDate" id="dateSelec" name="dateSelec" onchange="recuperationTest()">
 						<input id="titre" name ="titre" type="text"></td>
 				</tr>
 				<tr>
@@ -114,8 +133,7 @@ if (dim == 1){
 			</td></tr><tr><td id="zone_dialogue" class="message">&nbsp;</td></tr>
 			</table></td></tr>
 
-	</table>
-		</form>
-	</fieldset>
+	</table>-->
+			</fieldset>
 
 

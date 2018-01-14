@@ -1,17 +1,5 @@
 <?PHP
-//Projet pour la matinale PULSAR
 
-// Récupérer infos de google agenda
-
-// planning semainier
-
-//Decide pour le benevole des jours de sa chronique
-//($id benevole + récupérer les n° semaines + les jours [lundi Mardi Mercredi...])
-
-// Benevole peut inscrire dans une emission le titre de sa chronique
-// Benevole peut evoyer un fichier (contenant sa chronique)
-
-// Faire des rappels pour certaines emissions.
 require("../Modele/commun.inc");
 
 function connexion(){
@@ -28,12 +16,11 @@ function connexion(){
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-
 function creatUser($nom1,$prenom1,$mail1,$annee_diff1,$mdp1,$lundi1,$mardi1,$mercredi1,$jeudi1,$vendredi1,$samedi1,$dimanche1){
         connexion();
         global $idcom,$compteur;
         $requeteEnregistre="INSERT INTO chroniqueur (`nom`, `prenom`,`mail`, `annee_diff`, `password`,`lundi`,`mardi`,`mercredi`,`jeudi`,`vendredi`,`samedi`,`dimanche`) VALUES ('$nom1','$prenom1','$mail1','$annee_diff1','$mdp1','$lundi1','$mardi1','$mercredi1','$jeudi1','$vendredi1','$samedi1','$dimanche1');";
-        $compteur=$idcom->exec($requeteEnregistre);
+         $compteur=$idcom->exec($requeteEnregistre);
         return $compteur;
      }
 
@@ -59,6 +46,7 @@ $date_test = date('Y-m-d');
 $good_format=strtotime($date_test);
 $numSemCours = date('W',$good_format);
 $anneeEnCours = date('Y',$good_format);
+$moisEnCours = date('m',$good_format);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -91,26 +79,28 @@ echo "<br>";
  return $JourSemaine;
 }
 */
-	function semainier($semaine,$annee){
+	function semainier($semaine,$annee,$moisEnCours){
 
 		//Ecrit un tableau semainier en fonction de la semaine, du mois et de l'année indiquée
 		//Recupere le numero des jours de la semaine
-		$Lundi =    date("d", strtotime('First Monday January '.$annee.' +'.($semaine-1).' Week'));
-		$Mardi =    date("d", strtotime('First Monday January '.$annee.' +'.($semaine-1).' Week +1 day'));
-		$Mercredi = date("d", strtotime('First Monday January '.$annee.' +'.($semaine-1).' Week +2 day'));
-		$Jeudi =    date("d", strtotime('First Monday January '.$annee.' +'.($semaine-1).' Week +3 day'));
-		$Vendredi = date("d", strtotime('First Monday January '.$annee.' +'.($semaine-1).' Week +4 day'));
-		$Samedi =   date("d", strtotime('First Monday January '.$annee.' +'.($semaine-1).' Week +5 day'));
-		$Dimanche = date("d", strtotime('First Monday January '.$annee.' +'.$semaine.' Week -1 day'));
+		$Lundi =    date("d", strtotime('Monday January '.$annee.' +'.($semaine-1).' Week'));
+		$Mardi =    date("d", strtotime('Monday January '.$annee.' +'.($semaine-1).' Week +1 day'));
+		$Mercredi = date("d", strtotime('Monday January '.$annee.' +'.($semaine-1).' Week +2 day'));
+		$Jeudi =    date("d", strtotime('Monday January '.$annee.' +'.($semaine-1).' Week +3 day'));
+		$Vendredi = date("d", strtotime('Monday January '.$annee.' +'.($semaine-1).' Week +4 day'));
+		$Samedi =   date("d", strtotime('Monday January '.$annee.' +'.($semaine-1).' Week +5 day'));
+		$Dimanche = date("d", strtotime('Monday January '.$annee.' +'.$semaine.' Week -1 day'));
 
 		$joursDeLaSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 		$joursDeLaSemaineVariables = [$Lundi, $Mardi, $Mercredi, $Jeudi, $Vendredi, $Samedi, $Dimanche];
 		echo $semaine;
-		/*
-		$semainePrec = --$semaine;
-		$semaineSui = $semaine = $semaine+2;
-		*/
+		
+		//$semainePrec = --$semaine;
+		//$semaineSui = $semaine = $semaine+2;
+		
 		echo $semaine;
+
+
 		$j = 1;
 		$champ = '<div class="chron">	Nom du Chroniqueur<textarea>En attente du titre de la chronique</textarea><!--<input type="file" name="nom" />--></div>';
 
@@ -135,7 +125,12 @@ echo "<br>";
 				echo '</tr><tr>';
 			for($i = 0 ; $i < 7 ; $i++)
 				{
-					echo '<td class="contenuJours"><input type="button" value="chronique"></td>';
+					$dateAffiche = $annee .'-'. $moisEnCours .'-'. $joursDeLaSemaineVariables[$i];
+					echo '<td class="contenuJours">
+					      <div id="'.$dateAffiche.'" value="'.$dateAffiche.'">
+					      <input type="" value="'.$dateAffiche.'">
+					      </div>
+					      </td>';
 				}
 			echo '</table>';
 			}
@@ -147,7 +142,9 @@ echo "<br>";
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 	function listeNumSem($numSemCours,$numSemSelec){
+		
 		for ($i=1; $i < 53; $i++) {
+			
 		 	if ($i==$numSemCours){
 				echo '<a href="index_admin.php?page=semainier&semaine='.$i.'"><div class="num" value="idS'.$i.'" name="nameS'.$i.'" id="numSemCours">'.$i.'</div><a>';
 				}
@@ -192,6 +189,8 @@ echo "<br>";
         return $compteur;
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
     function recupEmissionsId($dateSelected){
     	connexion();
@@ -201,6 +200,8 @@ echo "<br>";
     	$EmId1=$EmissionId->fetch();
         return $EmId1;
     }
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 
     function recupInfos($id_em1,$id_chroniqueur1){
     	connexion();
@@ -214,24 +215,3 @@ echo "<br>";
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
-// foreach ($_POST as $id => $valeur){
-// 	$cmd1='$'.$id.'="";'; //	echo $cmd1.'<br/>';
-// 	eval($cmd1);
-// 	$cmd2 = 'if (isset($_POST["'.$id.'"])) {$'.$id.'=$_POST["'.$id.'"]; unset($_POST["'.$id.'"]); } '; //	echo $cmd2.'<br/>';
-// 	eval($cmd2);
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-// function PourChroniqueur($jourselectionne,$idChroniqueur){
-
-// //affiche tout ce qu'il faut
-// echo '<a href=""><div><textarea></textarea></div><a>';
-
-// }
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-?>
