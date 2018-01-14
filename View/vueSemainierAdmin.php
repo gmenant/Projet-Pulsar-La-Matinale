@@ -11,10 +11,11 @@ else
 
 echo $anneeEnCours;
 echo $numSemCours;
-
+echo $numSemSelec;
+$mois= jeudi_semaine($anneeEnCours,$numSemSelec);
 
 //semainier avec contenu
-semainier($numSemSelec,$anneeEnCours,$moisEnCours);
+semainier($numSemSelec,$anneeEnCours,$mois);
 ?>
 
 <div name="" id="choixHSemaine">
@@ -23,6 +24,9 @@ semainier($numSemSelec,$anneeEnCours,$moisEnCours);
 
 //liste des semaines
 listeNumSem($numSemCours,$numSemSelec);
+
+
+
 ?>
 
 </div>

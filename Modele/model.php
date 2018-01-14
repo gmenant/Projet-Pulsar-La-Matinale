@@ -79,7 +79,29 @@ echo "<br>";
  return $JourSemaine;
 }
 */
-	function semainier($semaine,$annee,$moisEnCours){
+	
+	function premier_jour($annee)
+		{
+		$jeudi = "Thursday";
+		$jour = 1;
+		while(date("l",mktime(0,0,0,1,$jour,$annee)) != $jeudi)
+		     {
+		        $jour++;
+		     }
+		$nb_jour = 7 - $jour;
+		return ($nb_jour);
+		}
+	
+	function jeudi_semaine($annee,$semaine)
+	     {
+	     $mois = date("m",mktime(0,0,0,1,(($semaine)*7)-premier_jour($annee),$annee));//tu cas remplace ici pour avoir le mois   
+	     return $mois; 
+	     }
+	
+		
+
+
+	function semainier($semaine,$annee,$mois){
 
 		//Ecrit un tableau semainier en fonction de la semaine, du mois et de l'année indiquée
 		//Recupere le numero des jours de la semaine
@@ -93,12 +115,12 @@ echo "<br>";
 
 		$joursDeLaSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 		$joursDeLaSemaineVariables = [$Lundi, $Mardi, $Mercredi, $Jeudi, $Vendredi, $Samedi, $Dimanche];
-		echo $semaine;
+		
 		
 		//$semainePrec = --$semaine;
 		//$semaineSui = $semaine = $semaine+2;
 		
-		echo $semaine;
+	
 
 
 		$j = 1;
@@ -125,7 +147,7 @@ echo "<br>";
 				echo '</tr><tr>';
 			for($i = 0 ; $i < 7 ; $i++)
 				{
-					$dateAffiche = $annee .'-'. $moisEnCours .'-'. $joursDeLaSemaineVariables[$i];
+					$dateAffiche = $annee .'-'. $mois .'-'. $joursDeLaSemaineVariables[$i];
 					echo '<td class="contenuJours">
 					      <div id="'.$dateAffiche.'" value="'.$dateAffiche.'">
 					      <input type="" value="'.$dateAffiche.'">

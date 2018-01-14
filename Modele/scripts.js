@@ -20,7 +20,7 @@ $(document).ready(function($){
 
 function afficheChroniquePourAdmin(){
     var AJAXdateSelec = encodeURIComponent($("#dateSelec").val());
-    var AJAXdateSelec = encodeURIComponent("2018-1-14");
+    var AJAXdateSelec = encodeURIComponent($("#");
     console.log(AJAXdateSelec);
     var xhr = $.ajax({
              url: "../View/AJAXaffiche_chronique.php",
