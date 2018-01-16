@@ -24,11 +24,10 @@ $resultatDate=$db->query($requeteRecupIdEmission);
 $res = $resultatDate -> fetch();
 $dateEm=$res['id_emission'];
 
+
 $verifEmissionExiste="SELECT id_emission FROM contenu WHERE id_emission='$dateEm' AND id_chroniqueur='$bd_id_chroniqueur';";
-var_dump($verifEmissionExiste);
 $resVerif=$db->query($verifEmissionExiste);
 $res = $resVerif -> fetch();
-var_dump($res);
 
 if (!($res == false)){
 	$mess="Il y a déjà un contenu";

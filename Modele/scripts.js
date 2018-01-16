@@ -20,7 +20,7 @@ $(document).ready(function($){
 
 function afficheChroniquePourAdmin(){
     var AJAXdateSelec = encodeURIComponent($("#dateSelec").val());
-    var AJAXdateSelec = encodeURIComponent($("#");
+    //var AJAXdateSelec = encodeURIComponent($("#"));
     console.log(AJAXdateSelec);
     var xhr = $.ajax({
              url: "../View/AJAXaffiche_chronique.php",
@@ -46,10 +46,10 @@ function afficheChroniquePourAdmin(){
                 console.log(donnees[2]);
                 $('#2018-01-14').append(donnees[0],donnees[1],donnees[2]);
                 //$('#'+donnees[2]+'').append(donnees[0],donnees[1],donnees[2]);
-                 
+
                  //$('#titre1').replaceWith(donnees[0]);
                  //$('#texte1').replaceWith(donnees[1]);
-                        
+
                  $("#zone_dialogue").css('color', 'darkgreen').css('background-color', 'lightblue');
                  $("#zone_dialogue").html("Voici les informations que vous avez envoyé concernant l'emission selectionnée ");
              }
@@ -63,9 +63,9 @@ function afficheChroniquePourAdmin(){
 
 
 function validation() { // contrôle les champs du formulaire avant d'envoyer les données au serveur
-                
 
-               
+
+
                  var AJAXid_chroniqueur = encodeURIComponent($("#id_chroniqueur").val());
                  var AJAXtitre = encodeURIComponent($("#titre").val());
                  var AJAXtexte = encodeURIComponent($("#texte").val());
@@ -98,7 +98,7 @@ function validation() { // contrôle les champs du formulaire avant d'envoyer le
                      .fail(function (xhr, erreur) {
                          $("#zone_dialogue").html('Une erreur système ' + erreur + 's\'est produite ');
                      })
-             
+
  }
 
 function recuperation(){
@@ -118,20 +118,23 @@ function recuperation(){
              var rep = message;
              console.log(rep);
              var retour = rep.substr(0, 6);
+
              if (retour == 'Erreur') {
                  $("#zone_dialogue").html(rep);
                  $("#nom").focus();
                  $("#zone_dialogue").css('color', 'tomato');
              } else {
                 var donnees=rep.split('|');
-                 
-                //if ()
-                 $('#titre1').append(donnees[0]);
-                 $('#texte1').append(donnees[1]);
-                 
+
+                //if (){
+
+                 $('#titre1').empty().append(donnees[0]).fadeIn('slow');
+                 $('#texte1').empty().append(donnees[1]).fadeIn('slow');
+
+                //}
                  //$('#titre1').replaceWith(donnees[0]);
                  //$('#texte1').replaceWith(donnees[1]);
-                        
+
                  $("#zone_dialogue").css('color', 'darkgreen').css('background-color', 'lightblue');
                  $("#zone_dialogue").html("Voici les informations que vous avez envoyé concernant l'emission selectionnée ");
              }

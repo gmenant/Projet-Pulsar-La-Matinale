@@ -1,8 +1,29 @@
 *{margin:0;padding:0;
       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-
     }
-    body{background-color: grey;}
+@font-face {
+  font-family: "ChunkFive";
+  src: url('../Modele/ChunkFive/Chunkfive.otf');
+}   
+body{background: linear-gradient(#9D82A5, #BFABC4);height:100vh;}
+h1{color:#EDD101;font-family: "ChunkFive", Helvetica, Arial, sans-serif;font-size:40pt;}
+
+    .ui-datepicker {font-size:24px; }
+    .picker{
+    }
+    .ui-datepicker{
+    width:100%;
+  
+    }
+    .ui-state-default{font-size:20px;}
+    .ui-datepicker-week-col{font-size:20px;}
+    .card-header{
+      padding:9px 2px 0px 13px;
+      background-color:rgba(255, 255, 255, 0.3) ;
+    }
+    .card{
+      background-color: rgba(255, 255, 255, 0.3) ;
+    }
     table {
       border-collapse: collapse;
       width:100%;
@@ -32,7 +53,7 @@
       border:none;
       border-top:7px solid lightgrey;
       background-color: gold;}
-  	
+
   	#lnJoursSemaine td:nth-child(even) {
   		background-color: orange;
   	}
@@ -79,3 +100,4 @@
       text-align: center;
       width:18px;
     }
+

@@ -1,2 +1,12 @@
-body
-{background-color:grey;}
+@font-face {
+  font-family: "ChunkFive";
+  src: url('../Modele/ChunkFive/Chunkfive.otf');
+}
+
+
+h2{font-family: "ChunkFive", Helvetica, Arial, sans-serif;font-size:15pt;}
+h3{font-family: "ChunkFive", Helvetica, Arial, sans-serif;font-size:10pt;}
+h8{}
+
+input{display:block;}
+textarea{display:block;}

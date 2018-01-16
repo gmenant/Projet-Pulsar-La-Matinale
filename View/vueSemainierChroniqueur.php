@@ -15,7 +15,7 @@ foreach ($infosJours as $v) {
 
 <script type="text/javascript">
 
-//variables pour limiter les choix de jours possibles	
+//variables pour limiter les choix de jours possibles
 var lundi    = 0;
 var mardi    = 0;
 var mercredi = 0;
@@ -63,51 +63,100 @@ if (dim == 1){
 	      firstDay: 1,
 	      altFormat: 'yy-mm-dd',
 	      altField: ".actualDate",
-	      onSelect: function(dateText, inst) { recuperation() },
+	      appendText: "(yyyy-mm-dd)",
+	      onSelect: function(dateText, inst) { recuperation(); },
 	      beforeShowDay: function (date) {
-	      	if (!(date.getDay() == lundi) && 
-	      		!(date.getDay() == mardi) && 
-	      		!(date.getDay() == mercredi) && 
-	      		!(date.getDay() == jeudi) && 
-	      		!(date.getDay() == vendredi) && 
-	      		!(date.getDay() == samedi) && 
+	      	if (!(date.getDay() == lundi) &&
+	      		!(date.getDay() == mardi) &&
+	      		!(date.getDay() == mercredi) &&
+	      		!(date.getDay() == jeudi) &&
+	      		!(date.getDay() == vendredi) &&
+	      		!(date.getDay() == samedi) &&
 	      		!(date.getDay() == dimanche)
 	      		) { // La semaine commence à 0 = Dimanche
 		    return [false, ''];
+
 			} else {
 		    return [true, ''];
-			}
-
-
-		  }
+				}
+			  }
 	    });
+
 	  });
+var appendText = $( "#champs" ).datepicker( "option", "appendText" );
+ $('#leg').empty().append(appendText);
+ console.log(appendText);
+
 
 </script>
 
-<div type="text" id="champs"></div></p>
 
-	<fieldset>
-    	<legend id="leg">Chronique du </legend>
+<div class="container-fluid">
+	Session appartenant à  <?PHP echo $_SESSION['nom'].' '.$_SESSION['prenom'] ?>
+</div>
+<div class="container-fluid">
+<div class="row no-gutters justify-content-start">
 
-			
-			<div>
-				<h3>Titre de la chronique</h3>
-				<input type="hidden" id="id_chroniqueur"  value="<?PHP echo $_SESSION['id'] ?>">
-				<input type="hidden" class="actualDate" id="dateSelec" name="dateSelec" onchange="recuperationTest()">
-				<input id="titre" name ="titre" type="text">
+
+<div class="picker col-12 col-sm-7 col-md-6 col-lg-4 container-fluid">
+			<div class="card ">
+			<div class="card-header">
+					<h2>Date à selectionner</h2>
+				</div>
+
+				<div type="text" id="champs"></div>
 			</div>
-			<div>
-				<h3>Contenu de la chronique</h3>
-				<textarea name="texte" id="texte" cols="30" rows="10"></textarea>
-				<button onclick="validation()">Envoyer informations</button>
-				<button onclick="recuperation()">Informations déjà entrées</button>
+</div>
+
+<div class="col container-fluid">
+			<div class="card">
+				<div class="card-header">
+					<h2>Chronique à ajouter</h2>
+				</div>
+				<div class="card-body">
+						<h8>Titre de la chronique</h8>
+						<input type="hidden" id="id_chroniqueur"  value="<?PHP echo $_SESSION['id'] ?>">
+						<input type="hidden" onhaschange="recup()" class="actualDate" id="dateSelec" name="dateSelec">
+						<input id="titre" name ="titre" type="text">
+						<h8>Contenu de la chronique</h8>
+						<textarea name="texte" id="texte" class="" rows="10"></textarea>
+						<p>&nbsp;</p>
+						<button class="btn" onclick="validation()">Envoyer informations</button>
+				</div>
 			</div>
-			<div id="zone_dialogue" class="message"></div>
-			<div id="titre1"></div>
-			<div id="texte1"></div>
+</div>
 
+<div class="col container-fluid">
+			<div class="card">
+				<div class="card-header">
+					<h2>Chronique déjà enregistrée</h2>
+				</div>
+				<div class="card-body">
 
+					<input type="" class="actualDate" >
+				<div class="card">	
+					<div class="card-header">
+						Titre de la chronique
+					</div>
+					<div class="card-body">
+						<div id="titre1" style="display:none;"></div>
+					</div>
+				</div>
+				<div class="card">	
+					<div class="card-header">
+						Texte de la chronique
+					</div>
+					<div class="card-body">
+						<div id="texte1" style="display:none;"></div>
+					</div>
+				</div>
+				</div>
+			</div>
+			<!--<div id="zone_dialogue" class="message"></div>-->
+
+</div>
+</div>
+</div>
 
 			<!--<table>
 				<tr>
@@ -134,6 +183,6 @@ if (dim == 1){
 			</table></td></tr>
 
 	</table>-->
-			</fieldset>
+
 
 
