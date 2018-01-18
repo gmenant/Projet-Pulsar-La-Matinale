@@ -1,12 +1,5 @@
 $(document).ready(function () {
-    var date_input = $('input[name="dateSelec"]'); //our date input has the name "date"
-    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-    var options = {
-        format: 'dd-mm-yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-    };
+    
     /*date_input.datepicker(options).on('changeDate', function (ev) {
         console.log('ok')
     });*/
@@ -18,7 +11,27 @@ $(document).ready(function () {
 })
 
 
-function afficheChroniquer(){ var xhr = $.ajax({
+
+function afficheChroniquesAdmin(){
+    var xhr = $.ajax({
+             url: "../View/AJAXaffiche_chronique_Admin.php",
+             type: 'POST',
+             dataType: 'html'
+         })
+         .done(function (message) {
+            var rep = message;
+            
+            $("#chroniqueursEx").html(rep);
+         })
+         .fail(function (xhr, erreur) {
+             $("#chroniqueursEx").html('Une erreur système ' + erreur + 's\'est produite ');
+         })
+  
+}
+
+
+function afficheChroniquer(){ 
+    var xhr = $.ajax({
              url: "../View/AJAXaffiche_chroniqueur.php",
              type: 'POST',
              dataType: 'html'

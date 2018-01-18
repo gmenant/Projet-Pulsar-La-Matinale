@@ -31,6 +31,7 @@ SECTION > DIV + DIV {
 .boum{
   color:red;
 }
+.btn:hover{background-color:#EDD101}
 
 #chronAAj{transition-timing-function: ease;}
     .ui-datepicker {font-size:15px; }

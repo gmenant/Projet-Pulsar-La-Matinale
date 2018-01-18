@@ -1,7 +1,7 @@
-<div class="container float-left">
-  <div class=" row float-left">
+<div class=" container float-left">
+  <div class=" row ">
 
-  <div class="card col-9">
+  <div class="card">
         <div class="card-header">
             <h5>Gestion Chroniqueurs</h5>
         </div>
@@ -10,17 +10,17 @@
                          <form class="container float-left " method="post">
                           <div class="row">
 
-                            <div class="col-5 ">
+                            <div class="col-10 ">
                                 <div for="nom1">Entrez nom</div>
-                                <input class="form-control" id="nom1" type="text" name="nom" required>
+                                <input style="white-space:nowrap;"class="form-control" id="nom1" type="text" name="nom" required>
                                 <div for="prenom1">Entrez prenom</div>
-                                <input class="form-control" id="prenom1" type="text" name="prenom" required>
+                                <input style="white-space:nowrap;"class="form-control" id="prenom1" type="text" name="prenom" required>
                                 <div for="anee_diff1">année diff</div>
-                                <input class="form-control" id="anee_diff1" type="text" name="annee_diff" required>
+                                <input style="white-space:nowrap;"class="form-control" id="anee_diff1" type="text" name="annee_diff" required>
                                 <div for="mail1">Mail</div>
-                                <input class="form-control" id="mail1" type="text" name="mail" required>
+                                <input style="white-space:nowrap;"class="form-control" id="mail1" type="text" name="mail" required>
                                 <div for="password1">Password</div>
-                                <input class="form-control" id="password1" type="text" name="password" required>
+                                <input style="white-space:nowrap;"class="form-control" id="password1" type="text" name="password" required>
                           </div>
 
                           <div class="col">
@@ -56,7 +56,8 @@
         </div>
         </div>
 
-        <div class="col-3" id="chroniqueursEx">
+        <div class="float-left" id="chroniqueursEx">
+
           Liste chroniqueurs existants
         </div>
         </div>
