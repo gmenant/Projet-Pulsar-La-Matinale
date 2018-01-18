@@ -1,5 +1,4 @@
     <?PHP
-header('Content-Type: text/html; charset=utf-8');
 include_once("../Modele/getallparams.php");
 include_once("../Modele/connexion.php");
 
@@ -14,10 +13,10 @@ $bd_dateSelec=utf8_decode(urldecode($dateSelec));
 $bd_id_chroniqueur=utf8_decode(urldecode($id_chroniqueur));
 //$bd_prenom=str_replace('%20',' ',$bd_prenom);
 //$bd_nom=str_replace('%20',' ',$bd_nom);
-echo ($bd_titre);
-echo ($bd_texte);
-echo ($bd_dateSelec);
-echo ($bd_id_chroniqueur);
+$bd_titre=str_replace("'", "\'", $bd_titre);
+$bd_texte=str_replace("'", "\'", $bd_texte);
+$bd_titre=str_replace('"', '\"', $bd_titre);
+$bd_texte=str_replace('"', '\"', $bd_texte);
 
 $requeteRecupIdEmission="SELECT id_emission FROM emissions WHERE date_diff='$bd_dateSelec';";
 $resultatDate=$db->query($requeteRecupIdEmission);

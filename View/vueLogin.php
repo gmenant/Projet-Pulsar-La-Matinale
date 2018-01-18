@@ -2,26 +2,16 @@
 
   <div class="loginMEP">&nbsp;</div>
 
-  <div id="login">
+  <div id="login" class="container-fluid">
     <form action="../Controller/index_chroniqueur.php?page=identifier" method="POST">
-      <table>
-        <tr>
-      <td><input type="text" name="nom"></td>
-      <tr>
-      <td>Identifiant</td>
-      </tr>
+        Identifiant
+        <input type="text" class="form-control" name="nom">
 
-      <tr>
-      <td><input type="password"  name="psw"></td>
-      </tr><tr>
-      <td>Mot de passe</td>
-      </tr>
-      <tr>
-      <td><input type="submit"></td><tr> </tr>
-      <td><a href="index.php?page=CreerCompte"><input  type="button" value="Creer compte"></input></a></td>
-      </tr>
-    </table>
-    </form>
+        Mot de passe
+        <input type="password" class="form-control" name="psw">
+
+        <input type="submit" class="btn">
+            </form>
 
   <div class="loginMEP">&nbsp;</div>
 

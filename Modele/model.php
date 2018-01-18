@@ -16,6 +16,14 @@ function connexion(){
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
+function SupprimeSession(){
+
+        session_destroy();
+
+    }
+//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
 function creatUser($nom1,$prenom1,$mail1,$annee_diff1,$mdp1,$lundi1,$mardi1,$mercredi1,$jeudi1,$vendredi1,$samedi1,$dimanche1){
         connexion();
         global $idcom,$compteur;
@@ -50,36 +58,8 @@ $moisEnCours = date('m',$good_format);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
-//Semainier
-/*	function JourParNrSemaine($Semaine,$Annee){
-//Définir la date du Lundi de la semaine
- // si le 1er janvier est un jeudi -> S53 possible
- $PremierJeudi=date("d",strtotime('First Thursday January '.$Annee));
- if($PremierJeudi=='08'){$PremierJeudi=1;}
- //si le 1er janvier est avant le jeudi
- if($PremierJeudi>4){$JourSemaine[1]=date("Y-m-d",strtotime('First Monday January '.$Annee.' +'.($Semaine-1).' Week'));}
- //si le 1er janvier est apres le jeudi
- if($PremierJeudi<4){$JourSemaine[1]=date("Y-m-d",strtotime('Last Monday January '.$Annee.' +'.($Semaine-1).' Week'));}
- //si le 1er janvier est un lundi
- if($PremierJeudi==4){$JourSemaine[1]=date("Y-m-d",strtotime('First Thursday January '.$Annee.' +'.($Semaine-1).' Week - 3Days'));}
-//remplissage de la semaine
- for($i=1; $i<=36;$i++){$JourSemaine[$i]=date("Y-m-d"",strtotime($JourSemaine[1].' +'.($i-1).'Day'));}
 
- var_dump($JourSemaine);
-echo "<br>";
-echo $JourSemaine['1'];
-echo "<br>";
-echo $JourSemaine['2'];
-echo "<br>";
-echo $JourSemaine['3'];
-echo "<br>";
-echo $JourSemaine['4'];
-echo "<br>";
 
- return $JourSemaine;
-}
-*/
-	
 	function premier_jour($annee)
 		{
 		$jeudi = "Thursday";
@@ -91,14 +71,14 @@ echo "<br>";
 		$nb_jour = 7 - $jour;
 		return ($nb_jour);
 		}
-	
+
 	function jeudi_semaine($annee,$semaine)
 	     {
-	     $mois = date("m",mktime(0,0,0,1,(($semaine)*7)-premier_jour($annee),$annee));//tu cas remplace ici pour avoir le mois   
-	     return $mois; 
+	     $mois = date("m",mktime(0,0,0,1,(($semaine)*7)-premier_jour($annee),$annee));//tu cas remplace ici pour avoir le mois
+	     return $mois;
 	     }
-	
-		
+
+
 
 
 	function semainier($semaine,$annee,$mois){
@@ -115,12 +95,12 @@ echo "<br>";
 
 		$joursDeLaSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 		$joursDeLaSemaineVariables = [$Lundi, $Mardi, $Mercredi, $Jeudi, $Vendredi, $Samedi, $Dimanche];
-		
-		
+
+
 		//$semainePrec = --$semaine;
 		//$semaineSui = $semaine = $semaine+2;
-		
-	
+
+
 
 
 		$j = 1;
@@ -164,9 +144,9 @@ echo "<br>";
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 	function listeNumSem($numSemCours,$numSemSelec){
-		
+
 		for ($i=1; $i < 53; $i++) {
-			
+
 		 	if ($i==$numSemCours){
 				echo '<a href="index_admin.php?page=semainier&semaine='.$i.'"><div class="num" value="idS'.$i.'" name="nameS'.$i.'" id="numSemCours">'.$i.'</div><a>';
 				}
@@ -183,10 +163,8 @@ echo "<br>";
         connexion();
         global $infosUser,$idcom;
         $requeteUserExist=" SELECT id_chroniqueur, nom, prenom, password, annee_diff, mail,lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche FROM chroniqueur WHERE nom = '$id'; ";
-        var_dump($requeteUserExist);
         $resultatExiste=$idcom->query($requeteUserExist);
         $infosUser=$resultatExiste->fetch();
-        var_dump($infosUser);
         return $infosUser;
     }
 //////////////////////////////////////////////////////////////////////////////////////////

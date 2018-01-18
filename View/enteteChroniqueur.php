@@ -26,5 +26,5 @@
 
 <body>
 	<h1 class="container-fluid">LA MATINALE</h1>
-  <a href="index.php?page=Login">Deconnexion</a>
+
 	<div>

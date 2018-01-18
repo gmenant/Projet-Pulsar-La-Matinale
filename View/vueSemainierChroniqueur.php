@@ -91,14 +91,17 @@ var appendText = $( "#champs" ).datepicker( "option", "appendText" );
 </script>
 
 
+
 <div class="container-fluid">
+	<button onclick="location.href='index_chroniqueur.php?page=deconnexion';" class="btn" href="index_chroniqueur.php?page=deconnexion">Deconnexion</button><br>
+
 	Session appartenant à  <?PHP echo $_SESSION['nom'].' '.$_SESSION['prenom'] ?>
 </div>
 <div class="container-fluid">
 <div class="row no-gutters justify-content-start">
 
 
-<div class="picker col-12 col-sm-7 col-md-6 col-lg-4 container-fluid">
+<div class="picker col-12 col-sm-5 col-md-4 col-lg-3 float-left pull-left container-fluid">
 			<div class="card ">
 			<div class="card-header">
 					<h2>Date à selectionner</h2>
@@ -108,46 +111,27 @@ var appendText = $( "#champs" ).datepicker( "option", "appendText" );
 			</div>
 </div>
 
-<div class="col container-fluid">
-			<div class="card">
-				<div class="card-header">
-					<h2>Chronique à ajouter</h2>
-				</div>
-				<div class="card-body">
-						<h8>Titre de la chronique</h8>
-						<input type="hidden" id="id_chroniqueur"  value="<?PHP echo $_SESSION['id'] ?>">
-						<input type="hidden" onhaschange="recup()" class="actualDate" id="dateSelec" name="dateSelec">
-						<input id="titre" name ="titre" type="text">
-						<h8>Contenu de la chronique</h8>
-						<textarea name="texte" id="texte" class="" rows="10"></textarea>
-						<p>&nbsp;</p>
-						<button class="btn" onclick="validation()">Envoyer informations</button>
-				</div>
-			</div>
-</div>
-
-<div class="col container-fluid">
+<div class="col container-fluid" id="infoPresente" style="display:none;">
 			<div class="card">
 				<div class="card-header">
 					<h2>Chronique déjà enregistrée</h2>
 				</div>
 				<div class="card-body">
-
-					<input type="" class="actualDate" >
-				<div class="card">	
+					<input type="" class="actualDate form-control" >
+				<div class="card">
 					<div class="card-header">
 						Titre de la chronique
 					</div>
 					<div class="card-body">
-						<div id="titre1" style="display:none;"></div>
+						<div id="titre1""></div>
 					</div>
 				</div>
-				<div class="card">	
+				<div class="card">
 					<div class="card-header">
 						Texte de la chronique
 					</div>
 					<div class="card-body">
-						<div id="texte1" style="display:none;"></div>
+						<div id="texte1"></div>
 					</div>
 				</div>
 				</div>
@@ -155,6 +139,27 @@ var appendText = $( "#champs" ).datepicker( "option", "appendText" );
 			<!--<div id="zone_dialogue" class="message"></div>-->
 
 </div>
+
+<div class="col container-fluid" id="chronAAj">
+			<div class="card">
+				<div class="card-header">
+					<h2>Chronique à ajouter</h2>
+				</div>
+				<div class="card-body">
+						<h8>Titre de la chronique</h8>
+						<input type="hidden" id="id_chroniqueur"  value="<?PHP echo $_SESSION['id'] ?>">
+						<input type="hidden" onhaschange="recup()" class="actualDate form-control" id="dateSelec" name="dateSelec">
+						<input id="titre" name ="titre" class="form-control" type="text">
+						<h8>Contenu de la chronique</h8>
+						<textarea name="texte" id="texte" class="form-control" rows="10"></textarea>
+						<p>&nbsp;</p>
+						<button class="btn" id="buttonValid" onclick="validation()">Envoyer informations</button>
+						<button class="btn" id="buttonModif" style="display:none;" onclick="modification()">Remplacer informations</button>
+				</div>
+			</div>
+</div>
+
+
 </div>
 </div>
 

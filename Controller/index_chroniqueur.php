@@ -39,7 +39,7 @@ switch("$page"){
 	        $_SESSION['samedi']             = $infosUser['samedi'];
 	        $_SESSION['dimanche']           = $infosUser['dimanche'];
 
-	        
+
 	        echo "<meta http-equiv='refresh' content='1;URL=../Controller/index_chroniqueur.php?page=semainier'>";
 		     }
 		     else
@@ -49,7 +49,7 @@ switch("$page"){
 		     }
 	break;
 	case 'semainier':
-		include('../View/vueSemainierChroniqueur.php'); 
+		include('../View/vueSemainierChroniqueur.php');
 	break;
 
 	case 'Login';
@@ -64,9 +64,14 @@ switch("$page"){
 		include('../View/afficheChronique.php');
 	break;
 
+	case 'deconnexion';
+		SupprimeSession();
+		include('../View/vueLogin.php');
+	break;
+
 	default:
 		include '../View/vueLogin.php';
-		     
+
 		}
 include('../View/pied.php');
 ?>
