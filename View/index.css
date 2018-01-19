@@ -1,128 +1,155 @@
-*{margin:0;padding:0;
-      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+
 @font-face {
   font-family: "ChunkFive";
   src: url('../Modele/ChunkFive/Chunkfive.otf');
 }
-body{background: linear-gradient(#9D82A5, #BFABC4);height:100vh;}
-h1{color:#EDD101;font-family: "ChunkFive", Helvetica, Arial, sans-serif;font-size:40pt;}
-#rightValues{width:90px;}
-#leftValues{width:90px;}
+
+body {
+  background: linear-gradient(#9D82A5, #BFABC4);
+  height: 100vh;
+}
+
+h1 {
+  color: #EDD101;
+  font-family: "ChunkFive", Helvetica, Arial, sans-serif;
+  font-size: 40pt;
+}
+
+#rightValues {
+  width: 90px;
+}
+
+#leftValues {
+  width: 90px;
+}
+
 SELECT, INPUT[type="text"] {
-    width: 160px;
-    box-sizing: border-box;
+  width: 160px;
+  box-sizing: border-box;
 }
+
 SECTION {
-    width:400px;
-    padding: 8px;
-    background-color: #f0f0f0;
-    overflow: auto;
+  width: 400px;
+  padding: 8px;
+  background-color: #f0f0f0;
+  overflow: auto;
 }
+
 SECTION > DIV {
-    float: left;
-    padding: 4px;
+  float: left;
+  padding: 4px;
 }
+
 SECTION > DIV + DIV {
-    width: 40px;
-    text-align: center;
+  width: 40px;
+  text-align: center;
 }
 
-.boum{
-  color:red;
+.boum {
+  color: red;
 }
-.btn:hover{background-color:#EDD101}
 
-#chronAAj{transition-timing-function: ease;}
-    .ui-datepicker {font-size:15px; }
-    .picker{
-    }
-    .ui-datepicker{
-    width:100%;
-
-    }
-    .ui-state-default{font-size:14px;}
-    .ui-datepicker-week-col{font-size:14px;}
-    .card-header{
-      padding:9px 2px 0px 13px;
-      background-color:rgba(255, 255, 255, 0.3) ;
-    }
-    .card{
-      background-color: rgba(255, 255, 255, 0.3) ;
-    }
-    table {
-      border-collapse: collapse;
-      width:100%;
-    }
-    a{text-decoration: none;}
-    tr {
-      width:100%;}
-
-    td {
-      text-align:center;
-      flex:auto;
-      border: 1px solid black;
-      font-size: 1.5vw;}
-.chron{
-  text-align:left;
-  padding:5px;
+.btn:hover {
+  background-color: #EDD101;
 }
-    .contenuJours{
-      height:12vh;
 
-    }
+#chronAAj {
+  transition-timing-function: ease;
+}
 
-    #lnJoursSemaine td {
-      padding:4px 0 3px 0;
-      text-align:left;
-      border:none;
-      border-top:7px solid lightgrey;
-      background-color: gold;}
+.ui-datepicker {
+  font-size: 15px;
+}
 
-  	#lnJoursSemaine td:nth-child(even) {
-  		background-color: orange;
-  	}
+.picker {
+}
 
-    #choixHSemaine {
+.ui-datepicker {
+  width: 100%;
+}
 
-      display:flex;
-      flex-wrap:wrap;
-      width:75vw;
-      }
+.ui-state-default {
+  font-size: 14px;
+}
 
-    #choixHSemaine a{
+.ui-datepicker-week-col {
+  font-size: 14px;
+}
 
-      color:white;
-      background-color:grey;
-      flex:initial;
-      border: 1px solid white;
-      padding:2px;
-    }
-    #choixHSemaine a div{
+.card-header {
+  padding: 9px 2px 0px 13px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
 
-    }
-    #numSemCours{
-      background-color: lightblue;
-    }
-    #numSemSelec{
-      background-color: gold;
-      color:black;
-    }
-    .nomJours{
+.card {
+  background-color: rgba(255, 255, 255, 0.3);
+}
 
-    }
-    #semainePrec{
-        width:0px;
-        border:20% solid transparent;
-        border-right:20% solid purple;
-        }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-     #semaineSui, #semainePrec, #semaineCours{
-      border:none;
-      padding:10px 0 2px 0;
-    }
-    .num{
-      text-align: center;
-      width:18px;
-    }
+a {
+  text-decoration: none;
+}
+
+tr {
+  width: 100%;
+}
+
+
+
+.chron {
+  text-align: left;
+  padding: 5px;
+}
+
+.contenuJours {
+  height: 12vh;
+}
+
+#lnJoursSemaine td {
+  padding: 4px 0 3px 0;
+  text-align: left;
+  border: none;
+  border-top: 7px solid lightgrey;
+  background-color: gold;
+}
+
+#lnJoursSemaine td:nth-child(even) {
+  background-color: orange;
+}
+
+
+#choixHSemaine a div {
+}
+
+#numSemCours {
+  background-color: lightblue;
+}
+
+#numSemSelec {
+  background-color: gold;
+  color: black;
+}
+
+.nomJours {
+}
+
+#semainePrec {
+  width: 0px;
+  border: 20% solid transparent;
+  border-right: 20% solid purple;
+}
+
+#semaineSui, #semainePrec, #semaineCours {
+  border: none;
+  padding: 10px 0 2px 0;
+}
 

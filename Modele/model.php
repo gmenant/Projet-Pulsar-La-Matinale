@@ -106,35 +106,46 @@ $moisEnCours = date('m',$good_format);
 		$j = 1;
 		$champ = '<div class="chron">	Nom du Chroniqueur<textarea>En attente du titre de la chronique</textarea><!--<input type="file" name="nom" />--></div>';
 
-			echo '<table>
+			echo '
+			<tr><th id="semainePrec">
+			
+			</td>
+			
+			
 			<tr>
-				<td id="semainePrec">
-				<a   href="index.php?semaine='.$semainePrec.'"></a>
-				</td>
-				<td colspan="5" id="semaineCours"> Semaine '.$semaine.' du '.$Lundi.' au '.$Dimanche.'
-				</td>
-				<td id="semaineSui">
-				<a  href="index.php?semaine='.$semaineSui.'"></a>
-				</td>
+			<td colspan="5" id="semaineCours"> Semaine '.$semaine.' du '.$Lundi.' au '.$Dimanche.'</td>
 			</tr>
-			<tr id="lnJoursSemaine">';
+			
+			<td id="semaineSui">
+			
+						
+			<tr id="lnJoursSemaine">
+			
+			<table class="table table-bordered table-striped">
+			<thead class="thead-light">';
 
-			for($i = 0 ; $i < 7 ; $i++)
-				{
-					echo '<td class="nomJours">'.$joursDeLaSemaine[$i]." ". $joursDeLaSemaineVariables[$i].'</td>';
-					$j++;
-				}
-				echo '</tr><tr>';
-			for($i = 0 ; $i < 7 ; $i++)
-				{
-					$dateAffiche = $annee .'-'. $mois .'-'. $joursDeLaSemaineVariables[$i];
-					echo '<td class="contenuJours">
-					      <div id="'.$dateAffiche.'" value="'.$dateAffiche.'">
-					      <input type="" value="'.$dateAffiche.'">
-					      </div>
-					      </td>';
-				}
-			echo '</table>';
+
+
+					for($i = 0 ; $i < 7 ; $i++)
+						{
+							echo '<th class="nomJours">'.$joursDeLaSemaine[$i]." ". $joursDeLaSemaineVariables[$i].'</th>';
+							$j++;
+						}	
+			echo '</thead>
+			<tbody>
+			<tr>';
+					for($i = 0 ; $i < 7 ; $i++)
+						{
+							$dateAffiche = $annee .'-'. $mois .'-'. $joursDeLaSemaineVariables[$i];
+							echo '<td class="contenuJours">
+							      <div id="'.$dateAffiche.'" value="'.$dateAffiche.'">
+							      <input type="" value="'.$dateAffiche.'">
+							      </div>
+							      </td>';
+						}
+			echo '</tr>
+			</tbody>
+			</table>';
 			}
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -148,14 +159,27 @@ $moisEnCours = date('m',$good_format);
 		for ($i=1; $i < 53; $i++) {
 
 		 	if ($i==$numSemCours){
-				echo '<a href="index_admin.php?page=semainier&semaine='.$i.'"><div class="num" value="idS'.$i.'" name="nameS'.$i.'" id="numSemCours">'.$i.'</div><a>';
+				echo '<li class="page-item">
+						<a value="idS'.$i.'" class="num page-link" id="numSemCours" href="index_admin.php?page=semainier&semaine='.$i.'">
+						'.$i.'
+						</a>
+					</li>';
 				}
 			else if ($i==$numSemSelec){
-				echo '<a href="index_admin.php?page=semainier&semaine='.$i.'"><div class="num" value="idS'.$i.'" name="nameS'.$i.'" id="numSemSelec">'.$i.'</div><a>';
+				echo '<li class="page-item">
+						<a value="idS'.$i.'" class="num page-link"  id="numSemSelec" href="index_admin.php?page=semainier&semaine='.$i.'">
+							'.$i.'
+						</a>
+					</li>';
 				}
 			else{
-				echo '<a href="index_admin.php?page=semainier&semaine='.$i.'"><div class="num" value="idS'.$i.'" name="nameS'.$i.'" name="nameS'.$i.'">'.$i.'</div><a>';}
+				echo '<li class="page-item">
+						<a value="idS'.$i.'" class="num page-link" href="index_admin.php?page=semainier&semaine='.$i.'">
+							'.$i.'
+						</a>
+					</li>';
 				}
+			}
 	}
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////

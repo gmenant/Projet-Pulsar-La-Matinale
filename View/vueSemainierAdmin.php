@@ -18,8 +18,9 @@ $mois= jeudi_semaine($anneeEnCours,$numSemSelec);
 semainier($numSemSelec,$anneeEnCours,$mois);
 ?>
 
-<div name="" id="choixHSemaine">
-
+<div name="" class="container-fluid" id="choixHSemaine">
+	<nav aria-label="Page navigation example">
+ 		<ul class="pagination pagination-sm flex-wrap">
 <?PHP
 
 //liste des semaines
@@ -28,6 +29,7 @@ listeNumSem($numSemCours,$numSemSelec);
 
 
 ?>
-
+		</ul>
+	</nav>
 </div>
 <div id="test"></div>
