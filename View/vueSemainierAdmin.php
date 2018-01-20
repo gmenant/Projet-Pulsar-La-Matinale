@@ -9,9 +9,9 @@ else
 {	$numSemSelec = $numSemCours;}
 
 
-echo $anneeEnCours;
-echo $numSemCours;
-echo $numSemSelec;
+//echo $anneeEnCours;
+//echo $numSemCours;
+//echo $numSemSelec;
 $mois= jeudi_semaine($anneeEnCours,$numSemSelec);
 
 //semainier avec contenu

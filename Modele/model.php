@@ -122,33 +122,44 @@ $moisEnCours = date('m',$good_format);
 			<tr id="lnJoursSemaine">
 			
 			<table class="table table-bordered table-striped">
-			<thead class="thead-light">';
-
-
+				<thead class="thead-light">';
 
 					for($i = 0 ; $i < 7 ; $i++)
 						{
 							echo '<th class="nomJours">'.$joursDeLaSemaine[$i]." ". $joursDeLaSemaineVariables[$i].'</th>';
 							$j++;
 						}	
+
 			echo '</thead>
-			<tbody>
-			<tr>';
-					for($i = 0 ; $i < 7 ; $i++)
-						{
-							$dateAffiche = $annee .'-'. $mois .'-'. $joursDeLaSemaineVariables[$i];
-							echo '<td class="contenuJours">
-							      <div id="'.$dateAffiche.'" value="'.$dateAffiche.'">
-							      <input type="" value="'.$dateAffiche.'">
-							      </div>
-							      </td>';
-						}
+			  	<tbody>
+					<tr>';
+				for($i = 0 ; $i < 7 ; $i++)
+					{	
+						$dateAffiche = $annee .'-'. $mois .'-'. $joursDeLaSemaineVariables[$i];
+						$retour_affichage=AfficheChroniqueAdmin($dateAffiche);
+
+						echo '<td class="contenuJours">
+							    <div id="'.$dateAffiche.'" value="'.$dateAffiche.'">
+							    	<input type="" value="'.$dateAffiche.'">
+							    </div>
+							    '.$retour_affichage;
+
+    					
+							$informations=recupInfos1($dateAffiche);
+							var_dump($informations);
+						echo '</td>';
+						      
+					}
 			echo '</tr>
-			</tbody>
+				</tbody>
 			</table>';
 			}
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
+	function AfficheChroniqueAdmin($bim){
+			return $bim;
+	}
+
 	function ajoutChroniqueur(){
 			echo '<td>'.$champ.'</td>';
 	}
@@ -239,3 +250,11 @@ $moisEnCours = date('m',$good_format);
 //////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////
 
+ function recupInfos1($dateEmission){
+    	connexion();
+    	global $idcom,$compteur;
+    	$requeteRecupIdEmision="SELECT texte, titre, date_diff, emissions.id_emission FROM emissions INNER JOIN contenu ON emissions.id_emission=contenu.id_emission WHERE date_diff='$dateEmission'";
+    	$EmissionId=$idcom->query($requeteRecupIdEmision);
+        $EmId1=$EmissionId->fetch();
+        return $EmId1;
+    }
