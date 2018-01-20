@@ -133,46 +133,7 @@ function validation() { // contrôle les champs du formulaire avant d'envoyer le
 
  }
 
-function validationCreaChron() { // contrôle les champs du formulaire avant d'envoyer les données au serveur
 
-
-                 var AJAXnom1 = encodeURIComponent($("#nom1").val());
-                 var AJAXprenom1 = encodeURIComponent($("#prenom1").val());
-                 var AJAXanee_diff1 = encodeURIComponent($("#anee_diff1").val());
-                 var AJAXmail1 = encodeURIComponent($("#mail1").val());
-                 var AJAXpassword1 = encodeURIComponent($("#password1").val());
-                 var xhr = $.ajax({
-                         url: "../View/AJAXcreation-chroniqueur.php",
-                         type: 'POST',
-                         data: {
-                             nom1: AJAXnom1,
-                             prenom1: AJAXprenom1,
-                             anee_diff1: AJAXanee_diff1,
-                             mail1: AJAXmail1,
-                             password1: AJAXpassword1
-                        },
-                         dataType: 'html'
-                     })
-                     .done(function (message) {
-                         $("#zone_dialogue").html(message);
-                         var rep = message;
-                         console.log(rep);
-                         var retour = rep.substr(0, 6);
-                         if (retour == 'Erreur') {
-                             $("#zone_dialogue").html(rep);
-                             $("#nom").focus();
-                             $("#zone_dialogue").css('color', 'tomato');
-                         } else {
-                             $("#zone_dialogue").css('color', 'darkgreen').css('background-color', 'lightblue');
-                             $("#zone_dialogue").html("Le chroniqueur " + AJAXnom1 + " a été ajoutée");
-                             afficheChroniquer();
-                         }
-                     })
-                     .fail(function (xhr, erreur) {
-                         $("#zone_dialogue").html('Une erreur système ' + erreur + 's\'est produite ');
-                     })
-
- }
 
 function recuperation(){
      var AJAXid_chroniqueur = encodeURIComponent($("#id_chroniqueur").val());

@@ -26,10 +26,12 @@ function SupprimeSession(){
 
 function creatUser($nom1,$prenom1,$mail1,$annee_diff1,$mdp1,$lundi1,$mardi1,$mercredi1,$jeudi1,$vendredi1,$samedi1,$dimanche1){
         connexion();
-        global $idcom,$compteur;
+	    global $idcom,$compteur;
+
         $requeteEnregistre="INSERT INTO chroniqueur (`nom`, `prenom`,`mail`, `annee_diff`, `password`,`lundi`,`mardi`,`mercredi`,`jeudi`,`vendredi`,`samedi`,`dimanche`) VALUES ('$nom1','$prenom1','$mail1','$annee_diff1','$mdp1','$lundi1','$mardi1','$mercredi1','$jeudi1','$vendredi1','$samedi1','$dimanche1');";
          $compteur=$idcom->exec($requeteEnregistre);
-        return $compteur;
+         var_dump($requeteEnregistre);
+        return $requeteEnregistre;
      }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -144,10 +146,12 @@ $moisEnCours = date('m',$good_format);
 							    </div>
 							    '.$retour_affichage;
 
-    					
+
 							$informations=recupInfos1($dateAffiche);
-							var_dump($informations);
-						echo '</td>';
+    					while($EmId1=$informations->fetch()){
+    						$chron1='<div>'.$EmId1['titre'].'</div><div>'.$EmId1['texte'].'</div></td>';
+							echo $chron1;
+							}
 						      
 					}
 			echo '</tr>
@@ -255,6 +259,5 @@ $moisEnCours = date('m',$good_format);
     	global $idcom,$compteur;
     	$requeteRecupIdEmision="SELECT texte, titre, date_diff, emissions.id_emission FROM emissions INNER JOIN contenu ON emissions.id_emission=contenu.id_emission WHERE date_diff='$dateEmission'";
     	$EmissionId=$idcom->query($requeteRecupIdEmision);
-        $EmId1=$EmissionId->fetch();
-        return $EmId1;
+        return $EmissionId;
     }

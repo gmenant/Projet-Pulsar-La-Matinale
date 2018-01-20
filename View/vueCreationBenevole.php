@@ -7,7 +7,7 @@
         </div>
         <div class="card_body container-fluid">
                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 pull-left">
-                         <form class="container float-left " method="post">
+                         <form class="container float-left " action="../Controller/index_admin.php?page=creation" method="post">
                           <div class="row">
 
                             <div class="col-10 ">
@@ -55,7 +55,7 @@
         </div>
         </div>
         </div>
-
+        <div id="zone_dialogue1"></div>
         <div class="float-left" id="chroniqueursEx">
 
           Liste chroniqueurs existants
